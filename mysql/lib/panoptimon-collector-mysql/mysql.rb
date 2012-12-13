@@ -11,25 +11,31 @@ module Panoptimon
     class MySQL
       
       def initialize(options={})
-      	@options = options
+        @options = default_options.merge!(options)
       end
 
-      def query 
-        connect.query(options['query'])
-	output
-      end
-
-      def output
-	query_response = []
-	query.each do |response|
-	  response.each do |k,v|
-	    query_response << "{\"#{k.downcase}\": \"#{v}\"}"
-	  end
-	end
+      def query
+        output = []
+        response = connect.query(options['query'])
+        response.each do |resp|
+          resp.each do |k,v|
+            output << "{#{k} => #{v}}"
+          end
+        end
+        output
       end
       
       def options
-      	@options
+        @options
+      end
+
+      def default_options
+        {
+          :host     => 'localhost',
+          :username => 'root',
+          :password => '',
+          :database => ''
+        }
       end
 
       private
@@ -39,38 +45,38 @@ module Panoptimon
       end
       
       def username
-      	options['username'] ||= 'root'
+        options['username'] ||= 'root'
       end
       
       def password
-      	options['password'] ||= ''
+        options['password'] ||= ''
       end
       
       def database
-      	options['database'] ||= ''
+        options['database'] ||= ''
       end
 
       def connect
         ::Mysql2::Client.default_query_options.merge!(:as => :json)
-      	@connect ||= ::Mysql2::Client.new(
-		                  :host     => host,
-				  :username => username,
-				  :password => password,
-				  :port     => socket,
-				  :database => database
-			         )
+        @connect ||= ::Mysql2::Client.new(
+          :host     => host,
+          :username => username,
+          :password => password,
+          :port     => socket,
+          :database => database
+        )
       end
 
       def socket
-      	(tcp || unix) ? (tcp ? options['port'] : options[:socket]) : 'socket undefined!'
+        (tcp || unix) ? (tcp ? options['port'] : options[:socket]) : 'socket undefined!'
       end
       
       def tcp
-      	options.has_key?('port')
+        options.has_key?('port')
       end
 
       def unix
-      	options.has_key?('socket')
+        options.has_key?('socket')
       end
     end
   end

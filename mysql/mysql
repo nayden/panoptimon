@@ -1,9 +1,12 @@
 #! /usr/bin/env ruby
 $: << File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
+
 require 'rubygems'
 require 'json'
-require 'mysql2'
+require 'panoptimon-collector-mysql'
 
 client = Panoptimon::Collector::MySQL.new(JSON.parse(ARGV[0]))
 puts JSON.generate(client.query)
+
+
 

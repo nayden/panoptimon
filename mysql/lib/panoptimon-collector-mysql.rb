@@ -1,1 +1,2 @@
-require 'panoptimon-collector-mysql'
+require 'mysql2'
+require 'panoptimon-collector-mysql/mysql'

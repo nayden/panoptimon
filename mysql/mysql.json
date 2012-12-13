@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "user": "root",
+  "password": "",
+  "database": "",
+  "port": 3306,
+  "query": "select * from mysql.user"
+}
