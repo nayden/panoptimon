@@ -1,0 +1,13 @@
+{
+  "hosts": {
+  <% @node['panoptimon']['collectors']['memcached']['hosts'].each_with_index do |(h, c), i| %>
+    <% @last = (@node['panoptimon']['collectors']['memcached']['hosts'].size - 1) %>
+    <% if i == @last %>
+    "<%= h %>": "<%= c %>"
+    <% else %>
+    "<%= h %>": "<%= c %>"<%= ',' %>
+    <% end %>
+  <% end %>
+  },
+  "memstat": "<%= @node['panoptimon']['collectors']['memcached']['memstat'] %>"
+}

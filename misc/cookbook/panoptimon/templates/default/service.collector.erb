@@ -1,0 +1,10 @@
+{
+<% @node['panoptimon']['collectors']['service'].each do |service, config| %>
+<% case config %>
+<% when String, Fixnum %>
+  "<%= service %>": <%= config.to_json + ',' %>
+<% else %>
+  "<%= service %>": <%= config.to_json %>
+<% end %>
+<% end %>
+}

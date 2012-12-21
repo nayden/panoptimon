@@ -1,0 +1,12 @@
+{
+  "checks": {
+  <% @node['panoptimon']['collectors']['processes']['checks'].each_with_index do |(check, info), index| %>
+  <% @last = (@node['panoptimon']['collectors']['processes']['checks'].size - 1) %>
+  <% if index == @last %>
+    "<%= check %>": <%= info.to_json %>
+  <% else %>
+    "<%= check %>": <%= info.to_json %><%= ',' %>
+  <% end %>
+  <% end %>
+  }
+}

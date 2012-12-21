@@ -1,0 +1,19 @@
+{
+  "description": "<%= @node['panoptimon']['collectors']['files']['description'] %>"<%= ',' %>
+  "paths": {
+  <% @node['panoptimon']['collectors']['files']['paths'].each do |dir, info| %>
+    "paths": {
+      "<%= dir %>": {
+      <% @last = (info.size - 1) %>      
+      <% info.each_with_index do |(k, v), i| %>
+      <% if i == @last %>
+        "<%= k %>": <%= v.to_json %>
+      <% else %>
+        "<%= k %>": <%= v.to_json %><%= ',' %>
+      <% end %>
+      <% end %>
+      }
+    }
+  }   
+  <% end %>
+}
