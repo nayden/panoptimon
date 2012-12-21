@@ -23,13 +23,13 @@ end
 end
 
 node[:panoptimon][:collectors].each do |col, cfg|
-  directory "#{node['panoptimon']['conf_dir']}/#{col}" do
+  directory "#{node['panoptimon']['conf_dir']}/collectors/#{col}" do
     owner 'root'
     group 'root'
     mode  '00755'
   end
 
-  template"#{node['panoptimon']['conf_dir']}/#{col}/#{col}.json" do
+  template"#{node['panoptimon']['conf_dir']}/collectors/#{col}/#{col}.json" do
     owner  'root'
     group  'root'
     mode   '00644'
