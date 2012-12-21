@@ -5,11 +5,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package 'java-1.7.0-openjdk'
-
-%w[eventmachine daemons thin riemann-client sys-filesystem].each do |gem_pkg|
-  gem_package gem_pkg
-end
+%w[ java-1.7.0-openjdk
+    rubygem-eventmachine
+    rubygem-daemons
+    rubygem-thin
+    rubygem-riemann-client
+    rubygem-sys-filesystem
+  ].each { |pkg| package pkg }
 
 [ node[:panoptimon][:install_dir],
   node[:panoptimon][:conf_dir],
