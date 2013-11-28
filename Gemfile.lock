@@ -1,0 +1,34 @@
+PATH
+  remote: .
+  specs:
+    panoptimon (0.4.4)
+      daemons
+      eventmachine (~> 1.0.0)
+      json
+      riemann-client
+      thin (~> 1.5.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    beefcake (0.3.7)
+    daemons (1.1.9)
+    eventmachine (1.0.3)
+    json (1.8.0)
+    mtrc (0.0.4)
+    rack (1.5.2)
+    riemann-client (0.2.2)
+      beefcake (>= 0.3.5)
+      mtrc (>= 0.0.4)
+      trollop (>= 1.16.2)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    trollop (2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  panoptimon!
